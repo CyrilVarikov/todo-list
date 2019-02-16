@@ -1,0 +1,25 @@
+<div class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1 d-flex align-items-center">
+      <span *ngIf="!task.done">{{task.heading}} </span>
+      <s *ngIf="task.done">{{task.heading }}</s>
+      <span *ngIf="!task.done" style="font-size: 10px" class="badge badge-success ml-1">Active</span>
+      <span *ngIf="task.done" style="font-size: 10px" class="badge badge-secondary ml-1">Done</span>
+    </h5>
+    <div class="d-flex flex-column ">
+      <span>Deadline</span>
+      <small>{{ task.deadLine }}</small>
+    </div>
+  </div>
+  <p class="mb-1">
+    <s *ngIf="task.done">{{task.description}}</s>
+    <span *ngIf="!task.done">{{task.description}}</span>
+  </p>
+  <div class="d-flex align-items-center">
+    <i class="fa fa-trash cursor-pointer" (click)="deleteTask(task)"></i>
+    <i *ngIf="!task.done" (click)="changeStatus(task)" class="fa fa-check-circle text-success cursor-pointer ml-1 mr-1"></i>
+    <!--TODO change href or change on api call-->
+    <i *ngIf="task.hasAttachment" (click)="downloadAttachment(task._id)" class="fa fa-download cursor-pointer"></i>
+    <i class="fa fa-edit cursor-pointer ml-1" (click)="editTask(task._id)"></i>
+  </div>
+</div>

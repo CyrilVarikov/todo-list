@@ -1,0 +1,38 @@
+<div class="card w-50 mx-auto mt-2">
+  <div class="card-header text-dark">
+    Edit task
+  </div>
+  <div class="card-body">
+    <!--spinner-->
+    <div *ngIf="!task" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <form #f="ngForm" *ngIf="task" (ngSubmit)="save(f)">
+      <div class="form-group">
+        <label for="form-heading">Heading</label>
+        <input type="text" class="form-control" id="form-heading" name="heading" [(ngModel)]="task.heading" placeholder="Input heading of todo" required ngModel>
+      </div>
+      <div class="form-group">
+        <label for="form-description">Description</label>
+        <textarea class="form-control" id="form-description" rows="3" name="description" [(ngModel)]="task.description" placeholder="Describe your todo" required ngModel></textarea>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">Deadline</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="deadline" [(ngModel)]="datePicker" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Save</button>
+      <button type="button" class="ml-1 btn btn-dark" (click)="back()">Cancel</button>
+
+    </form>
+  </div>
+</div>
+

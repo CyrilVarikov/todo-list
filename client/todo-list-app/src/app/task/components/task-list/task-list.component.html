@@ -1,0 +1,16 @@
+<div class="card w-50 mx-auto mt-2">
+  <div class="card-header text-dark">
+    TODO list
+  </div>
+  <div class="card-body">
+    <!--spinner-->
+    <div *ngIf="!tasks" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="tasks" class="list-group" id="todo-list">
+      <app-task  *ngFor="let task of tasks" [task]="task" (sendReqToParent)="updateTasks($event)"></app-task>
+    </div>
+  </div>
+</div>
+
